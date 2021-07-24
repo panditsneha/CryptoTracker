@@ -57,7 +57,7 @@ public class CoinAdapter extends RecyclerView.Adapter<CoinAdapter.ViewHolder> {
         holder.price.setText("$ " + df2.format(model.getPrice_usd()));
         holder.symbol.setText(model.getSymbol()+"  |");
 
-        Picasso.get().load(new StringBuilder("gs://cryptotrackerapp-61d59.appspot.com/").append(model.getSymbol().toLowerCase()).append(".png").toString()).into(holder.coinIcon);
+        Picasso.get().load(new StringBuilder("https://github.com/panditsneha/CryptoTracker/blob/master/app/src/main/res/drawable/").append(model.getSymbol().toLowerCase()).append(".png").append("?raw=true").toString()).into(holder.coinIcon);
     }
 
     @Override
