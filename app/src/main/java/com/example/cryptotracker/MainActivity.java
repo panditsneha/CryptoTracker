@@ -1,12 +1,16 @@
 package com.example.cryptotracker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -43,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
     CoinAdapter adapter;
     RecyclerView recyclerView;
     ProgressBar progressBar;
-
-    SwipeRefreshLayout swipeRefreshLayout;
+    EditText searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         progressBar = findViewById(R.id.idPBLoading);
+        searchView = findViewById(R.id.search);
         recyclerView = findViewById(R.id.recyclerView);
         items = new ArrayList<>();
         // initializing our adapter class.
@@ -63,7 +67,22 @@ public class MainActivity extends AppCompatActivity {
 
         getAPIData();
 
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
     }
 
     private void getAPIData() {
@@ -114,5 +133,27 @@ public class MainActivity extends AppCompatActivity {
         // calling a method to add our
         // json object request to our queue.
         queue.add(jsonObjectRequest);
+    }
+
+    public void filter(String filter){
+        // on below line we are creating a new array list
+        // for storing our filtered data.
+        ArrayList<CoinModel> filteredList = new ArrayList<>();
+        // running a for loop to search the data from our array list.
+        for(CoinModel item : items){
+            // on below line we are getting the item which are
+            // filtered and adding it to filtered list.
+            if(item.getName().toLowerCase().contains(filter.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        // on below line we are checking
+        // weather the list is emoty or not.
+        if(filteredList.isEmpty()){
+            Toast.makeText(this,"No currency found",Toast.LENGTH_SHORT).show();
+        }else{
+            adapter.filterList(filteredList);
+        }
+
     }
 }

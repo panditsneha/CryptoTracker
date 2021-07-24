@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipeLayout"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/search"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:queryHint="Search..."
+        app:iconifiedByDefault="false"
+        android:hint="   Search here..."
+        android:paddingLeft="16dp"
+        android:drawableStart="@drawable/ic_baseline_search_24"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -20,4 +33,4 @@
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

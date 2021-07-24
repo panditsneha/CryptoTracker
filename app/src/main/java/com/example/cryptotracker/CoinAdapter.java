@@ -36,6 +36,11 @@ public class CoinAdapter extends RecyclerView.Adapter<CoinAdapter.ViewHolder> {
         this.items = items;
     }
 
+    public void filterList(ArrayList<CoinModel> filterList){
+        items=filterList;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
