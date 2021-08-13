@@ -12,13 +12,14 @@
         android:id="@+id/search"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:queryHint="Search..."
+        android:layout_width="370dp"
+        android:layout_height="50dp"
         app:iconifiedByDefault="false"
-        android:hint="   Search here..."
+        android:hint="Search here..."
         android:paddingLeft="16dp"
-        android:drawableStart="@drawable/ic_baseline_search_24"/>
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:drawablePadding="15dp"
+        android:background="@drawable/search_bar_border"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
